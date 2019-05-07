@@ -36,10 +36,10 @@ def show_image(request):
         #         with Image.open(images_db.get_attachment(images_doc, k)) as im:
         #             bW, bH = im.size
         with Image.open(big_file2) as img:
-            bW, bH = img.size
-            wynikowyW = sizekafelek * bW  # sizekafelek dajemy 20 to wynikowy 1200 x 800
+            bW, bH = img.size #pobieramy W i H obrazka bazowego
+            wynikowyW = sizekafelek * bW  # sizekafelek dajemy np 20 to wynikowy 1200W x 800H
             wynikowyH = sizekafelek * bH
-            img = img.resize((wynikowyW, wynikowyH))
+            img = img.resize((wynikowyW, wynikowyH)) #obrazek bazowy powiekszamy do rozmiaru wynikowego i zapisujemy
             imgnew = Image.new('RGB', (wynikowyW, wynikowyH), 'WHITE')
             imgnew.paste(img)
             imagei = io.BytesIO()
@@ -69,14 +69,14 @@ def show_image(request):
 
         with Image.open(big_file) as big:
             rgb_im = big.convert('RGB')
-            for i in range(bW): #sizekafelek
-                for j in range(bH): #sizekafelek
+            for i in range(bW):
+                for j in range(bH):
                     r, g, b = 0, 0, 0
                     for ix in range(1, sizekafelek):
                         for iy in range(1, sizekafelek):
                             tr, tg, tb = rgb_im.getpixel((sizekafelek * i + ix, sizekafelek * j + iy))
                             r, g, b = r + tr, g + tg, b + tb
-                    x = 1024
+                    x = 1024 #z tym dzieleniem nie wiem nadal jak te pixele aby dobrze dobrac kolory pomimo to generuje sie w miare wyraznie
                     r, g, b = r / x, g / x, b / x
                     index = 0
                     minimum_from_images = big_images((r, g, b), img_coll_arr[0])
