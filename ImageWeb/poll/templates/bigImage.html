@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+  display: inline-block;
+}
+
+li {
+  float: left;
+  display: inline-block;
+  font-size: 170%;
+}
+
+li a {
+  display: inline-block;
+  color: red;
+  text-align: center;
+  padding: 22px 70px;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+    .container
+    {
+        width: 1000px; /* set the width that's you want */
+        margin: 0 auto;
+    }
+</style>
+</head>
+<body bgcolor="#4682b4">
+
+<div class="container" align="center">
+<ul>
+  <li style="background-color: chartreuse"><a href="{% url 'home' %}">Home</a></li>
+  <li><a href="{% url 'uploadImages' %}">Photos</a></li>
+  <li><a href="{% url 'upload_Big_Image' %}">Big Photos</a></li>
+  <li><a href="{% url 'show_big_image' %}">Image mosaic</a></li>
+    <li><a href="{% url 'set_kafelek' %}">Kafelek</a></li>
+</ul>
+</div>
+<div class="container" align="center">
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p style="color: black; font-size: 200%; text-align: center">Upload the photo to be created</p>
+    <li2 style="font-size: 150%; text-align: center">
+    {{ form.as_p }}
+    </li2>
+    <button type="submit" style="background: lightslategrey; font-size: 150%; cursor: pointer; text-align: center;">Upload file!</button>
+</form>
+</div>

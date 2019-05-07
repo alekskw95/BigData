@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+  display: inline-block;
+}
+
+li {
+  float: left;
+  display: inline-block;
+  font-size: 170%;
+}
+
+li a {
+  display: inline-block;
+  color: red;
+  text-align: center;
+  padding: 22px 70px;
+  text-decoration: none;
+  list-style-type: none;
+}
+
+li a:hover {
+  background-color: #111;
+}
+.container
+    {
+        width: 1000px; /* set the width that's you want */
+        margin: 0 auto;
+    }
+p.b {
+  font-style: italic;
+}
+</style>
+</head>
+<body bgcolor="#4682b4">
+<div class="container" align="center">
+<ul>
+  <li style="background-color: chartreuse"><a href="{% url 'home' %}">Home</a></li>
+  <li><a href="{% url 'uploadImages' %}">Photos</a></li>
+  <li><a href="{% url 'upload_Big_Image' %}">Big Photos</a></li>
+  <li><a href="{% url 'show_big_image' %}">Image mosaic</a></li>
+    <li><a href="{% url 'set_kafelek' %}">Kafelek</a></li>
+</ul>
+</div>
+<div class="container">
+
+<p class="b" style="font-size: 250%; text-align: center">Inżynieria przetwarzania dużych zbiorów danych</p>
+<p style="font-size: 180%; text-align: center">Projekt</p>
+<p style="font-size: 180%; text-align: center">Aleksandra Kwapisz</p>
+</div>
