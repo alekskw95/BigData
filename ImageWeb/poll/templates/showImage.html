@@ -1,0 +1,105 @@
+{#{% extends 'index.html' %}#}
+{##}
+{##}
+{##}
+{#{% block title %}Mosaic image {% endblock %}#}
+{##}
+{#{% block content %}#}
+{#    {% if has_content is True %}#}
+{#        <h1 class="p-3">Your mosaic image:</h1>#}
+{#        <img alt="Embedded image" src="{{ image }}" class="image-container"/>#}
+{##}
+{#    {% else %}#}
+{#        <form method="post" enctype="multipart/form-data">#}
+{#            {% csrf_token %}#}
+{#            <div class="form-group">#}
+{#                {{ form.width}}#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#                {{ form.height }}#}
+{#            </div>#}
+{#            <div class="text-center">#}
+{#                <button type="submit" class="btn btn-outline-primary p-2">Show your mosaic file!</button>#}
+{#            </div>#}
+{#        </form>#}
+{#    {% endif %}#}
+{#{% endblock %}#}
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: black;
+  display: inline-block;
+  font-family: 'fantasy', sans-serif;
+}
+li {
+  float: left;
+  display: inline-block;
+  font-size: 170%;
+}
+li a {
+  display: inline-block;
+  color: red;
+  text-align: center;
+  padding: 22px 70px;
+  text-decoration: none;
+  list-style-type: none;
+}
+li a:hover {
+  background-color: #111;
+}
+.container
+{
+   width: 2000px; /* set the width that's you want */
+   margin: 0 auto;
+}
+{#.image-container {#}
+{#    width: 500px;#}
+{#    height: 500px;#}
+{#}#}
+</style>
+</head>
+<body bgcolor="#483d8b">
+
+<div class="container" align="center">
+<ul>
+  <li style="background-color: midnightblue"><a href="{% url 'home' %}">Home</a></li>
+  <li><a href="{% url 'add_images' %}">Photos</a></li>
+  <li><a href="{% url 'add_big_image' %}">Big Photos</a></li>
+  <li><a href="{% url 'show_image' %}">Image mosaic</a></li>
+</ul>
+</div>
+<div class="container" align="center">
+    {% block content %}
+    {% if has_content is True %}
+        <h1 class="p-3">Your mosaic image:</h1>
+        <img alt="Embedded image" src="{{ image }}" class="image-container"/>
+
+    {% else %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <h1 class="p-3">The size of the tile:</h1>
+            {{ form.sizeKafelek}}
+{#            <div class="form-group">#}
+{#                {{ form.sizeKafelek}}#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#                {{ form.height }}#}
+{#            </div>#}
+            <div class="text-center">
+                <button type="submit" style="background: lightslategrey; font-size: 150%; cursor: pointer; text-align: center;"
+                        class="btn btn-outline-primary p-2">Create mosaic!</button>
+            </div>
+        </form>
+    {% endif %}
+{% endblock %}
+
+</div>

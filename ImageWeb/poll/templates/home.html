@@ -1,3 +1,11 @@
+{#{% extends 'index.html' %}#}
+{##}
+{#{% block title %}Home page {% endblock %}#}
+{##}
+{#{% block content %}#}
+{#    <h1 class="head">Hello world</h1>#}
+{#{% endblock %}#}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,14 +17,13 @@ ul {
   overflow: hidden;
   background-color: black;
   display: inline-block;
+  font-family: 'fantasy', sans-serif;
 }
-
 li {
   float: left;
   display: inline-block;
   font-size: 170%;
 }
-
 li a {
   display: inline-block;
   color: red;
@@ -25,13 +32,12 @@ li a {
   text-decoration: none;
   list-style-type: none;
 }
-
 li a:hover {
   background-color: #111;
 }
 .container
     {
-        width: 1000px; /* set the width that's you want */
+        width: 2000px; /* set the width that's you want */
         margin: 0 auto;
     }
 p.b {
@@ -39,14 +45,13 @@ p.b {
 }
 </style>
 </head>
-<body bgcolor="#4682b4">
+<body bgcolor="#483d8b">
 <div class="container" align="center">
 <ul>
-  <li style="background-color: chartreuse"><a href="{% url 'home' %}">Home</a></li>
-  <li><a href="{% url 'uploadImages' %}">Photos</a></li>
-  <li><a href="{% url 'upload_Big_Image' %}">Big Photos</a></li>
-  <li><a href="{% url 'show_big_image' %}">Image mosaic</a></li>
-    <li><a href="{% url 'set_kafelek' %}">Kafelek</a></li>
+  <li style="background-color: midnightblue"><a href="{% url 'home' %}">Home</a></li>
+  <li><a href="{% url 'add_images' %}">Photos</a></li>
+  <li><a href="{% url 'add_big_image' %}">Big Photos</a></li>
+  <li><a href="{% url 'show_image' %}">Image mosaic</a></li>
 </ul>
 </div>
 <div class="container">
