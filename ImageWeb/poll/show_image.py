@@ -9,26 +9,23 @@ def show_image(request):
         form = ShowImageForm(request.POST)
         if form.is_valid():
             sizeK = int(form.cleaned_data['sizeKafelek'])
-            #width, height = int(form.cleaned_data['width']), int(form.cleaned_data['height'])
-            width = sizeK
-            height = sizeK
+
             images_doc = server['big_image']
             # zmieniamy rozmiar naszego duzego obrazka
-            old_width, old_height, new_image_name = resize_image(images_doc, 'big_image', width, height)
+            old_width, old_height, new_image_name = resize_picture(images_doc, 'big_image', sizeK)#, height)
 
             complete_image = [[0 for _ in range(old_height)] for _ in range(old_width)]
             new_image = server.get_attachment(images_doc, new_image_name)
 
-            complete_image = big_rgb_calculate(new_image, complete_image, width, height,
-                                               old_width, old_height)
+            complete_image = big_picture_rgb(new_image, complete_image, sizeK,  old_width, old_height)
 
             view = server.view('images_db/rgb')
 
-            images = get_images_from_view(view, width, height, complete_image)
-            ia = Image.new('RGB', (old_width * width, old_height * height))
+            images = get_images_from_view(view, sizeK, complete_image)
+            ia = Image.new('RGB', (old_width * sizeK, old_height * sizeK))
             for i in range(0, old_width):
                 for j in range(0, old_height):
-                    ia.paste(images[complete_image[i][j]], (i * width, j * height + j))
+                    ia.paste(images[complete_image[i][j]], (i * sizeK, j * sizeK + j))
 
             image_io = io.BytesIO()
             ia.save(image_io, 'PNG')
